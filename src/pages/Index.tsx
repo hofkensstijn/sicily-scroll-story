@@ -6,13 +6,14 @@ import TimelineComponent from '../components/TimelineComponent';
 import TripOverview from '../components/TripOverview';
 import { tripData, TripDay as TripDayType } from '../data/tripData';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
   const [activeDay, setActiveDay] = useState<TripDayType | null>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
+  const navigate = useNavigate();
 
   // Calculate total travel distance
   const totalDistance = tripData.reduce((total, day) => {
@@ -94,7 +95,7 @@ const Index = () => {
               e.preventDefault();
               e.nativeEvent.stopImmediatePropagation();
               console.log('Overview button clicked');
-              window.location.href = '/overview';
+              navigate('/overview');
             }}
             className="cursor-pointer"
           >
@@ -108,7 +109,7 @@ const Index = () => {
               e.preventDefault();
               e.nativeEvent.stopImmediatePropagation();
               console.log('Restaurants button clicked');
-              window.location.href = '/restaurants';
+              navigate('/restaurants');
             }}
             className="cursor-pointer"
           >
