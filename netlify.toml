@@ -10,6 +10,17 @@
   to = "/index.html"
   status = 200
 
+# Ensure all routes work
+[[redirects]]
+  from = "/overview"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/restaurants"
+  to = "/index.html"
+  status = 200
+
 # Additional SPA routing support
 [[headers]]
   for = "/*"
