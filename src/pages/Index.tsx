@@ -6,14 +6,13 @@ import TimelineComponent from '../components/TimelineComponent';
 import TripOverview from '../components/TripOverview';
 import { tripData, TripDay as TripDayType } from '../data/tripData';
 import { Button } from '@/components/ui/button';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Index = () => {
   const [activeDay, setActiveDay] = useState<TripDayType | null>(null);
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
-  const navigate = useNavigate();
 
   // Calculate total travel distance
   const totalDistance = tripData.reduce((total, day) => {
@@ -89,34 +88,16 @@ const Index = () => {
         }}
       >
         <div className="space-y-2">
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              e.nativeEvent.stopImmediatePropagation();
-              console.log('Overview button clicked');
-              navigate('/overview');
-            }}
-            className="cursor-pointer"
-          >
+          <Link to="/overview" className="cursor-pointer">
             <Button className="bg-white border border-sicily-terracotta text-sicily-terracotta hover:bg-sicily-terracotta/10 w-full">
               View Detailed Overview
             </Button>
-          </div>
-          <div
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              e.nativeEvent.stopImmediatePropagation();
-              console.log('Restaurants button clicked');
-              navigate('/restaurants');
-            }}
-            className="cursor-pointer"
-          >
+          </Link>
+          <Link to="/restaurants" className="cursor-pointer">
             <Button className="bg-white border border-sicily-terracotta text-sicily-terracotta hover:bg-sicily-terracotta/10 w-full">
               Restaurants to Visit
             </Button>
-          </div>
+          </Link>
         </div>
       </div>
       
